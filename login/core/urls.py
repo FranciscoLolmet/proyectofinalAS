@@ -30,6 +30,7 @@ urlpatterns = [
    path('ticketscerrados/', ticketscerrados, name='ticketcerrados'),
    path('configuraciondecorreo/', configuraciondecorreo, name='configuraciondecorreo'),#pagina para configurar correo pop3
    path('configuracion-correo/', views.configurar_correo, name='configuracion_correo'),
+   
 ]
 
 if settings.DEBUG:

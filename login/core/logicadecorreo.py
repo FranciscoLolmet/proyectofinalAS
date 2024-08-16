@@ -2,8 +2,25 @@ from django.shortcuts import render, redirect
 import poplib
 import threading
 import time
+from .models import Ticket  # Importa el modelo Ticket
+from email import parser
+
 
 def process_email(msg_content):
+    email_message = parser.Parser().parsestr(msg_content)
+    
+    # Extract the subject and body
+    subject = email_message['subject']
+    body = email_message.get_payload()
+    
+    # Create a new ticket with the email content
+    Ticket.objects.create(
+        title=subject,
+        description=body,
+    )
+    print("Nuevo ticket creado a partir del correo:")
+    print(f"Título: {subject}")
+    print(f"Descripción: {body}")
     # Aquí puedes procesar el contenido del correo electrónico
     # Por ejemplo, extraer el remitente, el asunto, el cuerpo, etc.
     print("Nuevo correo electrónico recibido:")

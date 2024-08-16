@@ -4,6 +4,9 @@ from django.db import models
 
 #definimos nuestra clase ticket para crear la BD con sus campos respectivos
 class Ticket(models.Model):
+    sender = models.EmailField(default=" ")
+    subject = models.CharField(max_length=255, default=" ")
+    body = models.TextField(default=" ")
     title = models.CharField(max_length=100)
     description = models.TextField()
     priority = models.CharField(max_length=10, choices=[
